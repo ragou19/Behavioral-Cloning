@@ -26,9 +26,9 @@ In this project, we use what we've learned about deep neural networks and convol
 ### Here I consider the [rubric points](https://review.udacity.com/#!/rubrics/432/view) for this project individually and describe how I addressed each point in my implementation.  
 
 ---
-###Files Submitted & Code Quality
+### Files Submitted & Code Quality
 
-####1. Submission includes all required files and can be used to run the simulator in autonomous mode.
+#### 1. Submission includes all required files and can be used to run the simulator in autonomous mode.
 
 My project includes the following files:
 * [model.py](http://) script which creates and trains the model.
@@ -40,7 +40,7 @@ My project includes the following files:
 
 Note that the simulator itself is not included. Please see the [Readme](http://) for more details.
 
-####2. Submission includes functional code
+#### 2. Submission includes functional code
 Using the Udacity-provided simulator and drive.py file, the car can be driven autonomously around the track by executing 
 ```sh
 python drive.py model.h5
@@ -53,9 +53,9 @@ Starting up the simulator once the script has been fully loaded, we are able to 
 
 The model.py file contains the code for training and saving the convolution neural network. The file shows the pipeline I used for training and validating the model, and it contains comments to explain how the code works.
 
-###Model Architecture and Training Strategy
+### Model Architecture and Training Strategy
 
-####1. An appropriate model architecture has been employed
+#### 1. An appropriate model architecture has been employed
 
 My model consists of a convolution neural network with five convolutional layers, each employing either a 5x5 or 3x3 filter, and an associated ReLU. It is very similar in concept to and inspired by the deep learning network posted on NVIDIA's blog by Bojarski, Firner, and others:
 
@@ -80,7 +80,7 @@ model.add(Cropping2D(cropping=((64, 24), (0,0))))
 
 Normalization entailed taking pixel values between 0 and 255, and modifying them to range between -0.5 and 0.5. The cropping layer chops off the top 64 pixels and bottom 24 pixels of each image, which displayed unnecessary foliage or scenery and the front part of the hood of the car. Naturally, these portions of the image did nothing to reliably improve our model's performance on the track (and arguably diminished it), and so were excluded.
 
-####2. Attempts to reduce overfitting in the model
+#### 2. Attempts to reduce overfitting in the model
 
 Curiously enough, the model initially suffered from dramatically decreased accuracy on account of its dropout layers being present alongside each convolutional layer. Once removed, not only had mean-squared-error decreased and tolerable performance been achieved, but also overfitting became no real concern. This is perhaps due to the robustness of the NVIDIA model in general and to the presence of sufficient data after flipping and accounting for the different cameras' images. (see #4 below)
 
@@ -97,7 +97,7 @@ sign = (-1) ^ (-i  + 1)
 
 For more information on the trigonometric solution, see the "Model Architecture and Training Strategy" section below. Incorporating the left and right camera angles through these equations, as well as flipping each resultant image and driving around the track numerous times in different ways, made for a large bank of image data that prevented the model from overfitting.
 
-####3. Model parameter tuning
+#### 3. Model parameter tuning
 
 The model used an adam optimizer, so the learning rate was not tuned manually originally (model.py, line 74).
 
@@ -105,15 +105,15 @@ However, upon insertion of the devised trigonometric equations (lines 36-42), on
 
 Tuning these new hyperparameters eventually caused a fairly robust and accurate model to emerge overall.
 
-####4. Appropriate training data
+#### 4. Appropriate training data
 
 The small bank of training data was augmented with two additional laps around the track in both the clockwise and counterclockwise directions, then evened out further by flipping each image. The car was driven manually as close to the center line as possible, especially during curves. No attempts were made to record data with the car recovering from the side of the road exclusively; instead, the left and right camera images were incorporated with improved measurement estimates.
 
 For details on how I modified the left and right camera steering angle measurements, please see the next section. 
 
-###Model Architecture and Training Strategy
+### Model Architecture and Training Strategy
 
-####1. Solution Design Approach
+#### 1. Solution Design Approach
 
 The overall strategy for deriving a model architecture was to enlarge the training set as much as possible while making good use of an existing architecture well-suited for the purpose.
 
@@ -203,7 +203,7 @@ Before running the model in the simulator, a rough measure of its accuracy was c
 
 Again, by the very end of training and inclusion of the left and right camera images into the model, the car stayed satisfactorily close to center, self-corrected manual small displacements on or off the road, and was able to drive within the lane lines indefinitely in either direction along the track.
 
-####2. Final Model Architecture
+#### 2. Final Model Architecture
 
 The final model architecture (lines 60-75) consisted of a convolution neural network with the following layers and sizes:
 
