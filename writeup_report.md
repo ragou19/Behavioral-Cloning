@@ -32,14 +32,14 @@ Here I consider the [rubric points](https://review.udacity.com/#!/rubrics/432/vi
 #### 1. Submission includes all required files and can be used to run the simulator in autonomous mode.
 
 My project includes the following files:
-* [model.py](http://) script which creates and trains the model.
-* [drive.py](http://) file for driving the car in autonomous mode.
-* [model.h5](http://), a trained convolution neural network in Keras's HDF5 format.
-* [video.mp4](http://) recording showing the car being driven autonomously by the generated model.
-* [README](http://) introducing readers to the project.
+* [model.py](./model.py) script which creates and trains the model.
+* [drive.py](./drive.py) file for driving the car in autonomous mode.
+* [model.h5](./model.h5), a trained convolution neural network in Keras's HDF5 format.
+* [video.mp4](./video.mp4) recording showing the car being driven autonomously by the generated model.
+* [README](./README.md) introducing readers to the project.
 * A writeup report (this document) summarizing the results.
 
-Note that the simulator itself is not included. Please see the [Readme](http://) for more details.
+Note that the simulator itself is not included. Please see the [Readme](./README.md) for more details.
 
 #### 2. Submission includes functional code
 Using the Udacity-provided simulator and drive.py file, the car can be driven autonomously around the track by executing 

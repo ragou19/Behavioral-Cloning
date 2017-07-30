@@ -15,11 +15,11 @@ In this project, we use what we've learned about deep neural networks and convol
 * Summarize the results with a written report.
 
 The following files are included in the repository: 
-* [Writeup Report](http://) with a full explanation of the project.
-* [model.py](http://) Python script used to create and train the model.
-* [drive.py](http://) script to drive the car - created by Udacity staff and modified only to maximize the speed of the vehicle. Requires their simulator to run - see below in the Dependencies section.
-* [model.h5](http://), a trained Keras model output from the model.py file and used by the drive.py file.
-* [video.mp4](http://) recording of the vehicle driving autonomously around the track using the generated model.
+* [Writeup Report](./writeup_report.md) with a full explanation of the project.
+* [model.py](./model.py) Python script used to create and train the model.
+* [drive.py](./drive.py) script to drive the car - created by Udacity staff and modified only to maximize the speed of the vehicle. Requires their simulator to run - see below in the Dependencies section.
+* [model.h5](./model.h5), a trained Keras model output from the model.py file and used by the drive.py file.
+* [video.mp4](./video.mp4) recording of the vehicle driving autonomously around the track using the generated model.
 
 ### Dependencies
 Running the simulator (not included; see above) and associated files on your own machine requires the following:
