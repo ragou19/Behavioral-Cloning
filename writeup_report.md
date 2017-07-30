@@ -23,7 +23,8 @@ In this project, we use what we've learned about deep neural networks and convol
 [image5]: ./pictures/right_2017_07_21_07_34_54_931.jpg "Right Camera Image"
 
 ## Rubric Points
-### Here I consider the [rubric points](https://review.udacity.com/#!/rubrics/432/view) for this project individually and describe how I addressed each point in my implementation.  
+
+Here I consider the [rubric points](https://review.udacity.com/#!/rubrics/432/view) for this project individually and describe how I addressed each point in my implementation.  
 
 ---
 ### Files Submitted & Code Quality
@@ -49,7 +50,7 @@ Starting up the simulator once the script has been fully loaded, we are able to 
 
 [![alt text][image0]](./video.mp4 "Autonomous Driving Video")
 
-####3. Submission code is usable and readable
+#### 3. Submission code is usable and readable
 
 The model.py file contains the code for training and saving the convolution neural network. The file shows the pipeline I used for training and validating the model, and it contains comments to explain how the code works.
 
@@ -136,24 +137,24 @@ The letters and items in the diagram signify the following:
 * P = point of reaction, or the point observed on the road in front of the car which determines the resulting center camera's steering angle (equivalent to the car's steering angle)
 * R = "radius" of the car, equal to half the distance between the left and right cameras and thus similar to half the car's width
 * d = direct distance from the center camera to the point of reaction
-* \alpha = steering angle to be calculated for the left camera. Each left camera image will take this angle and feed it into the model as if it were the center camera, thereby improving reactivity when the car approaches either side of the road too much
-* \beta = steering angle provided for the center camera and thus the car itself
-* \gamma = steering angle to be calculated for the right camera
+* α = steering angle to be calculated for the left camera. Each left camera image will take this angle and feed it into the model as if it were the center camera, thereby improving reactivity when the car approaches either side of the road too much
+* β = steering angle provided for the center camera and thus the car itself
+* γ = steering angle to be calculated for the right camera
 
 Negating intricacies related to rigid body mechanics or integral relationships between differential amounts of steering and vehicle velocity, we can take this relatively simple model and use it to predict what the steering angles for the left and right cameras should be had their corresponding images been located at the center of the vehicle.
 
 All told, we end up with the following equations:
 
-tan(\alpha) = (R/dcos(\beta)) - tan(\beta)
+tan(α) = (R/dcos(β)) - tan(β)
 (P left of center)
 
-tan(\alpha) = (R/dcos(\beta)) + tan(\beta)
+tan(α) = (R/dcos(β)) + tan(β)
 (P right of center)
 
-tan(\gamma) = (R/dcos(\beta)) + tan(\beta)
+tan(γ) = (R/dcos(β)) + tan(β)
 (P left of center)
 
-tan(\gamma) = (R/dcos(\beta)) - tan(\beta)
+tan(γ) = (R/dcos(β)) - tan(β)
 (P right of center)
 
 All four equations were incorporated as shown below by relating the camera's orientation (encapsulated in the index i) to the algebraic sign in the middle via the "sign" variable:
@@ -172,13 +173,13 @@ else:
 				+ (0.0175 * (np.rad2deg(-new_angle)) / 25) 
 ```
 
-Since the quantity dcos(\beta) represents the perpendicular distance from the front bumper to the parallel line containing the point of reaction, it is a rough equivalent to the length it takes the car to travel with the new steering angle. Assuming (quite poorly) that the tires change direction instantaneously, this allows us to relate distance in car width units.
+Since the quantity dcos(β) represents the perpendicular distance from the front bumper to the parallel line containing the point of reaction, it is a rough equivalent to the length it takes the car to travel with the new steering angle. Assuming (quite poorly) that the tires change direction instantaneously, this allows us to relate distance in car width units.
 
-For instance, if dcos(\beta) = 4R = 2 * 2R, the point of reaction is two car width's away from the front of the car, and the first term in each equation becomes
+For instance, if dcos(β) = 4R = 2 * 2R, the point of reaction is two car width's away from the front of the car, and the first term in each equation becomes
 
-R/dcos(\beta) = R/4R = 1/4
+R/dcos(β) = R/4R = 1/4
 
-Since a typical car is about [5.6 feet wide](https://en.wikipedia.org/wiki/Vehicle_size_class), we can use this and a vehicle speed of 30 mph to predict what dcos(\beta) should be for the average human with a [reaction time of 0.2476 seconds to visual stimuli](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4456887/):
+Since a typical car is about [5.6 feet wide](https://en.wikipedia.org/wiki/Vehicle_size_class), we can use this and a vehicle speed of 30 mph to predict what dcos(β) should be for the average human with a [reaction time of 0.2476 seconds to visual stimuli](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4456887/):
 
 0.2476 seconds * (1 hour/3600 seconds) * (30 miles/1 hour) * (5280 feet/1 mile) 
 
@@ -234,7 +235,7 @@ Here is a visualization of the architecture (created on [NVIDIA's blog](https://
 
 ![alt text][image1]
 
-####3. Creation of the Training Set & Training Process
+#### 3. Creation of the Training Set & Training Process
 
 Two laps were done in either direction, driving as close to the center of the road as possible (especially on curves). Here is an example of what it looked like from the center camera angle:
 
